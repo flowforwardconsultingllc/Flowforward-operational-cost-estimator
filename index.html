@@ -218,7 +218,7 @@
 
     <div class="cta-block">
       <p>These numbers are a starting point, not a conclusion. FlowForward surfaces what's actually happening in your organization so you can make decisions with confidence, not estimates.</p>
-      <a href="https://calendly.com/flowforwardconsultingllc-support/30min" target="_blank">Schedule a Discovery Conversation</a>
+      <a href="https://calendly.com/flowforwardconsultingllc-support/flowforward-strategy-call" id="calendly-cta">Schedule a Discovery Conversation</a>
     </div>
   </div>
 
@@ -228,6 +228,16 @@
 document.getElementById('firefight-pct').addEventListener('input', function() {
   document.getElementById('firefight-out').textContent = this.value + '%';
 });
+(function() {
+  // Calendly's own "today's month" auto-detection has proven unreliable,
+  // so it's passed explicitly instead, same fix applied to the assessment.
+  var link = document.getElementById('calendly-cta');
+  if (link) {
+    var d = new Date();
+    var yearMonth = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+    link.href = link.href + '?month=' + yearMonth;
+  }
+})();
 document.getElementById('turnover-pct').addEventListener('input', function() {
   document.getElementById('turnover-out').textContent = this.value + '%';
 });
